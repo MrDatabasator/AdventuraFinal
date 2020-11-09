@@ -2,6 +2,8 @@ package cz.vse.ruzicka.logika;
 
  
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 /**
@@ -27,6 +29,10 @@ seznamVeci = new HashMap<String, Vec>();
      */
    public void vlozVec (Vec vec) {
      seznamVeci.put(vec.getJmeno(),vec);
+    }
+
+    public Map<String, Vec> getSeznamVeci() {
+        return seznamVeci;
     }
      /**
      * Vrací řetězec názvů věcí, které jsou v batohu

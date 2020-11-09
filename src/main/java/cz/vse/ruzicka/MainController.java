@@ -1,5 +1,6 @@
 package cz.vse.ruzicka;
 
+import cz.vse.ruzicka.logika.Batoh;
 import cz.vse.ruzicka.logika.IHra;
 import cz.vse.ruzicka.logika.Prostor;
 import cz.vse.ruzicka.logika.Vec;
@@ -22,6 +23,7 @@ public class MainController {
 
     public VBox exits;
     public VBox items;
+    public VBox backpack;
 
 
     public void init(IHra hra) {
@@ -38,6 +40,7 @@ public class MainController {
 
         updateExits();
         updateItems();
+        updateBackpack();
     }
 
     private void updateItems() {
@@ -80,6 +83,26 @@ public class MainController {
 
             exits.getChildren().add(exitLabel);
         }
+
+    }
+
+    private void updateBackpack(){
+
+        Batoh batoh = hra.getBatoh();
+        backpack.getChildren().clear();
+
+        batoh.getSeznamVeci().entrySet().stream().forEach(e -> {
+            Label batohLabel = new Label(e.getKey());
+            batohLabel.setCursor(Cursor.HAND);
+            batohLabel.setOnMouseClicked(event -> {
+                String result = hra.zpracujPrikaz("poloz " + e.getKey());
+                textOutput.appendText(result+"\n\n");
+                update();
+            });
+
+            backpack.getChildren().add(batohLabel);
+        });
+
 
     }
 

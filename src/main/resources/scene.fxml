@@ -28,6 +28,18 @@
                 </VBox>
             </VBox>
             <!--Batoh-->
+           <VBox>
+               <Label>
+                   <text>
+                       Batoh
+                   </text>
+                   <font>
+                       <Font name="System Bold" size="14.0" />
+                   </font>
+               </Label>
+               <VBox fx:id="backpack" spacing="10">
+               </VBox>
+           </VBox>
             <!--Predmety-->
            <VBox spacing="10">
                <Label>
