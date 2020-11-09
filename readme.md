@@ -1,0 +1,2 @@
+## readme
+Adventura Patrik Novák
