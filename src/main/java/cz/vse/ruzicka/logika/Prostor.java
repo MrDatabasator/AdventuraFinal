@@ -20,10 +20,15 @@ import java.util.HashMap;
  */
 public class Prostor {
 
+    private String vecVprostoru;
+    private Prostor zavrenyVychod;
+    private String cimOtevritZavrenyVychod;
+
     private String nazev;
     private String popis;
     private Set<Prostor> vychody;   // obsahuje sousední místnosti
-    private Map<String, Vec> seznamVeci ;   // seznam věcí v prostoru
+    private Map<String, Vec> seznamVeci;   // seznam věcí v prostoru
+
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
      * před domem"
@@ -38,6 +43,20 @@ public class Prostor {
         vychody = new HashSet<>();
         seznamVeci = new HashMap<String, Vec>();
     }
+
+    /**
+     * přetížený konstruktor prostoru pro místnosti kde není žádný východ dokud nepoužijete nějakou věc kterou východ otevřete
+     */
+
+    public Prostor(String nazev, String popis, Prostor zavrenyVychod, String cimOtevritZavrenyVychod) {
+        this.nazev = nazev;
+        this.popis = popis;
+        vychody = new HashSet<>();
+        this.zavrenyVychod = zavrenyVychod;
+        this.cimOtevritZavrenyVychod = cimOtevritZavrenyVychod;
+        seznamVeci = new HashMap<String, Vec>();
+    }
+
 
     public Map<String, Vec> getSeznamVeci() {
         return seznamVeci;
@@ -101,7 +120,7 @@ public class Prostor {
         vysledek = 37 * vysledek + hashNazvu;
         return vysledek;
     }
-      
+
 
     /**
      * Vrací název prostoru (byl zadán při vytváření prostoru jako parametr
@@ -110,7 +129,15 @@ public class Prostor {
      * @return název prostoru
      */
     public String getNazev() {
-        return nazev;       
+        return nazev;
+    }
+
+    public String getCimOtevritZavrenyVychod() {
+        return cimOtevritZavrenyVychod;
+    }
+
+    public Prostor getZavrenyVychod() {
+        return zavrenyVychod;
     }
 
     /**

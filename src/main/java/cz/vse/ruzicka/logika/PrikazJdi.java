@@ -45,6 +45,7 @@ class PrikazJdi implements IPrikaz {
             return "Tam se odsud jít nedá!";
         }
         else {
+            Statistiky.pridejNavstivenouMistnost();
             plan.setAktualniProstor(sousedniProstor);
             return sousedniProstor.dlouhyPopis();
         }

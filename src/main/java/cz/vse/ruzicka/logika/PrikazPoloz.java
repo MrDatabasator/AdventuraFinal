@@ -33,7 +33,7 @@ private static final String NAZEV = "poloz";
     public String proved(String... parametry) {
         if (parametry.length == 0) {
             // pokud chybí druhé slovo , tak ....
-            return "Co mám položit? Musíš zadat jméno věci";
+            return "Co mám položit nebo použít? Musíš zadat jméno věci";
         }
 
         String jmenoVeci = parametry[0];
@@ -41,12 +41,14 @@ private static final String NAZEV = "poloz";
         // vybereme věc
         Vec vec = batoh.vyberVec(jmenoVeci);
 
-        if (vec == null) {
+        if (vec.getJmeno().equals(plan.getAktualniProstor().getCimOtevritZavrenyVychod())) {
+            plan.getAktualniProstor().setVychod(plan.getAktualniProstor().getZavrenyVychod());
+            return "Použil jsi " + jmenoVeci;
+        } else if (vec == null) {
             return "Taková věc v batohu není ";
-        }
-        else {
-	     // vložíme věc do místnosti
-	        plan.getAktualniProstor().vlozVec(vec);
+        } else {
+            // vložíme věc do místnosti
+            plan.getAktualniProstor().vlozVec(vec);
             return "Položil jsi " + jmenoVeci;
         }
     }

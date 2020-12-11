@@ -30,7 +30,50 @@ public class HerniPlan {
      *  Jako výchozí aktuální prostor nastaví domeček.
      */
     private void zalozProstoryHry() {
-        // vytvářejí se jednotlivé prostory
+
+        Prostor HlavniHala = new Prostor("HlavniHala", "Po vyhrané rvačce s agresivním vězněm jsi padl do bezvědomí, \n\nnevíš co se stalo dál ale jak se pomalu probouzíš začneš rozeznávat nemocniční prostředí, rychle vstaneš ze svého lůžka jestli se ti to nezdá a otevřeš dvěře hlavní haly.\n\n Nyní už víš že jsi určitě v nemocnici, všude kolem tebe prochází spousta doktorů a pacientů. Bylo tedy to co se ti stalo jen sen nebo skutečnost? \n\nGratuluju!! Dohrál jsi mojí hru :)");
+        Prostor Vezen = new Prostor("Vezen", "Přišel jsi k vězni a ten se na tebe agresivně vrhl. Není času na zbyt, pokud nemáš nic na sebeobranu zde tvá cesta končí.", HlavniHala, "Baseballka");
+        Prostor Kuchyne = new Prostor("Kuchyne", "Vešel jsi do kuchyně, když v tom se na tebe otočila partička bachařů, kteří tam popíjeli, jeden vytáhl zbraň a než by jsi cokoliv stačil, cítíš jak ti po hrudi stéká krev a padáš mrtvý k zemi. Zde tvá výprava končí.");
+        Prostor Jidelna = new Prostor("Jidelna", "Vešel jsi do jídelny, nevypadá to na normální vězeňskou jídelnu naopak spíš na bachařskou, jediné co vidíš na stole jsou lahve rumu když tu náhle uslyšíš z kuchyně šramot.");
+        Prostor Satny = new Prostor("Satny", "Dostal jsi se do šatny, ve které jde cítit smrad potu avšak prního čeho si všimneš je děsivá silueta postavy člověka na konci chodby.");
+        Prostor Osoba = new Prostor("Osoba", "Přišel si k osobě a ta tě okřikla, co tu chceš mladej, přines mi rum a pak si možná pokecáme.", Satny, "Rum");
+        Prostor Sprchy = new Prostor("Sprchy", "Jsi ve sprchách, ve vzduchu je cítít vlhkost a v pozadí vidíš mezi dveřmi stát děsivou osobu.");
+        Prostor PravaCesta = new Prostor("PravaCesta", "Vešel jsi do dlouhé široké chodby kterou se lyne příjemná vůně.");
+        Prostor LevaCesta = new Prostor("LevaCesta", "Vešel jsi do temné uličky se schody nahoru, ve vzduchu je cítit hniloba a jediné co jde slyšet jsou kapky vody dopadající ze stropu na zem.");
+        Prostor Rozcesti = new Prostor("Rozcesti", "Jsi na rozcestí kde se dělí cesta na dvě, levou a pravou.");
+        Prostor Chodba = new Prostor("Chodba", "Nacházíš se v dlouhé cihlové chodbě, chodba vede do tvojí cely, cely vedle a k mohutným kovovým dveřím které na sobě mají zámek.", Rozcesti, "Klic");
+        Prostor Cela = new Prostor("Cela", "Probudil jsi se ve staré špinavé cele s palčivou bolestí hlavy, nevíš jak jsi se sem dostal ale neplánuješ tu zůstat, zkus se porozhlédnout kolem a najít něco čím se dostaneš pryč.", Chodba, "Pacidlo");
+        Prostor VedlejsiCela = new Prostor("VedlejsiCela", "Vstoupil jsi do vedlejší cely která již byla otevřená a zdá se že je již nějakou dobu neobydlená.");
+
+        Chodba.setVychod(VedlejsiCela);
+        VedlejsiCela.setVychod(Chodba);
+        PravaCesta.setVychod(Rozcesti);
+        LevaCesta.setVychod(Rozcesti);
+        Rozcesti.setVychod(Chodba);
+        LevaCesta.setVychod(Sprchy);
+        Sprchy.setVychod(Osoba);
+        Sprchy.setVychod(LevaCesta);
+        Jidelna.setVychod(Kuchyne);
+        Rozcesti.setVychod(PravaCesta);
+        Rozcesti.setVychod(LevaCesta);
+        PravaCesta.setVychod(Jidelna);
+        Osoba.setVychod(Sprchy);
+        Satny.setVychod(Vezen);
+        Jidelna.setVychod(PravaCesta);
+
+        Cela.vlozVec(new Vec("Pacidlo", true));
+        VedlejsiCela.vlozVec(new Vec("Klic", true));
+        Chodba.vlozVec(new Vec("Retez", true));
+        Sprchy.vlozVec(new Vec("Mydlo", true));
+        Satny.vlozVec(new Vec("Baseballka", true));
+        Jidelna.vlozVec(new Vec("Rum", true));
+
+
+        aktualniProstor = Cela;  // hra začíná v domečku
+        viteznyProstor = HlavniHala;
+
+
+        /*// vytvářejí se jednotlivé prostory
         Prostor domecek = new Prostor("domecek","domeček, ve kterém bydlí Karkulka");
         Prostor chaloupka = new Prostor("chaloupka", "chaloupka, ve které bydlí babička Karkulky");
         Prostor jeskyne = new Prostor("jeskyne","stará plesnivá jeskyně");
@@ -47,13 +90,13 @@ public class HerniPlan {
         jeskyne.setVychod(hlubokyLes);
         chaloupka.setVychod(hlubokyLes);
                 
-        aktualniProstor = domecek;  // hra začíná v domečku  
+        //aktualniProstor = domecek;  // hra začíná v domečku
         viteznyProstor = chaloupka ;
         les.vlozVec(new Vec("maliny", true));
         les.vlozVec(new Vec("strom", false));
         domecek.vlozVec(new Vec("babovka", true));
         domecek.vlozVec(new Vec("vino", true));
-        chaloupka.vlozVec(new Vec("babicka", false));
+        chaloupka.vlozVec(new Vec("babicka", false));*/
 
     }
     

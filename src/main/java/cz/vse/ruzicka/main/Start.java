@@ -6,6 +6,7 @@ package cz.vse.ruzicka.main;
 import cz.vse.ruzicka.MainController;
 import cz.vse.ruzicka.logika.Hra;
 import cz.vse.ruzicka.logika.IHra;
+import cz.vse.ruzicka.logika.Statistiky;
 import cz.vse.ruzicka.uiText.TextoveRozhrani;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +22,8 @@ import java.util.List;
  * Třída {@code Start} je hlavní třídou projektu,
  * který ...
  *
- * @author    jméno autora
- * @version   0.00.000
+ * @author Patrik Novák
+ * @version 1.00.000
  */
 public class Start extends Application
 {
@@ -41,13 +42,18 @@ public class Start extends Application
             ui.hraj();
         } else {
             launch();
+            try {
+                Statistiky.zapniMereni();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setFullScreen(true);
-        primaryStage.setTitle("Karkulka");
+        primaryStage.setTitle("JailBreak");
 
         FXMLLoader loader = new FXMLLoader();
         InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");

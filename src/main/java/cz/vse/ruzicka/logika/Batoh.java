@@ -17,29 +17,39 @@ import java.util.HashMap;
 public class Batoh
 {
 public static final int KAPACITA = 3 ;
-private Map<String, Vec> seznamVeci ;   // seznam věcí v batohu
+private Map<String, Vec> seznamVeci;   // seznam věcí v batohu
+    public Collection<String> SeznamVeciJmena;
 
 public Batoh () {
 seznamVeci = new HashMap<String, Vec>();
 }
- /**
+
+    /**
      * Vloží věc do batohu
      *
-     *@param  vec  instance věci, která se má vložit
+     * @param vec instance věci, která se má vložit
      */
-   public void vlozVec (Vec vec) {
-     seznamVeci.put(vec.getJmeno(),vec);
+    public void vlozVec(Vec vec) {
+        seznamVeci.put(vec.getJmeno(), vec);
+    }
+
+    public Collection<String> vratJmenaVeci() {
+        for (Map.Entry<String, Vec> entry : seznamVeci.entrySet()) {
+            SeznamVeciJmena.add(entry.getKey());
+        }
+        return SeznamVeciJmena;
     }
 
     public Map<String, Vec> getSeznamVeci() {
         return seznamVeci;
     }
-     /**
-     * Vrací řetězec názvů věcí, které jsou v batohu
 
-     *@return            řetězec názvů
+    /**
+     * Vrací řetězec názvů věcí, které jsou v batohu
+     *
+     * @return řetězec názvů
      */
-    public String nazvyVeci () {
+    public String nazvyVeci() {
         String nazvy = "věci v batohu: ";
         for (String jmenoVeci : seznamVeci.keySet()){
             	nazvy += jmenoVeci + " ";

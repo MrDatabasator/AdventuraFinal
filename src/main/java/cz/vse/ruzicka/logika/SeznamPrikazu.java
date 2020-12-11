@@ -12,23 +12,26 @@ import java.util.Map;
  *
  *  Tato třída je součástí jednoduché textové hry.
  *
- *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Alena Buchalcevova
- *@version    z kurzu 4IT101 pro školní rok 2013/2014
+ *@author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Alena Buchalcevova
+ *@version z kurzu 4IT101 pro školní rok 2013/2014
  */
-class SeznamPrikazu {
+public class SeznamPrikazu {
     // mapa pro uložení přípustných příkazů
-    private  Map<String,IPrikaz> mapaSPrikazy;
-    
-   
-    
+    private Map<String, IPrikaz> mapaSPrikazy;
+
+
+    public Map<String, IPrikaz> vratPlatnePrikazy() {
+        return mapaSPrikazy;
+    }
+
     /**
      * Konstruktor
      */
     public SeznamPrikazu() {
         mapaSPrikazy = new HashMap<>();
     }
-    
-    
+
+
     /**
      * Vkládá nový příkaz.
      *

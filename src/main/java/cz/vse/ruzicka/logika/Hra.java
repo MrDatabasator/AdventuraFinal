@@ -34,24 +34,31 @@ public class Hra implements IHra {
     }
 
     /**
-     *  Vrátí úvodní zprávu pro hráče.
+     * Vrátí úvodní zprávu pro hráče.
      */
     public String vratUvitani() {
         return "Vítejte!\n" +
-               "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
-               "Napište 'napoveda', pokud si nevíte rady, jak hrát dál.\n" +
-               "\n" +
-               herniPlan.getAktualniProstor().dlouhyPopis();
+                "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
+                "Napište 'napoveda', pokud si nevíte rady, jak hrát dál.\n" +
+                "\n" +
+                herniPlan.getAktualniProstor().dlouhyPopis();
     }
-    
+
     /**
-     *  Vrátí závěrečnou zprávu pro hráče.
+     * Vrátí seznam platných příkazů
+     */
+    public SeznamPrikazu vratPlatnePrikazy() {
+        return platnePrikazy;
+    }
+
+    /**
+     * Vrátí závěrečnou zprávu pro hráče.
      */
     public String vratEpilog() {
         return "Dík, že jste si zahráli.  Ahoj.";
     }
-    
-    /** 
+
+    /**
      * Vrací true, pokud hra skončila.
      */
      public boolean konecHry() {
@@ -67,7 +74,8 @@ public class Hra implements IHra {
      *@return          vrací se řetězec, který se má vypsat na obrazovku
      */
      public String zpracujPrikaz(String radek) {
-        String [] slova = radek.split("[ \t]+");
+         Statistiky.pridejPrikaz();
+         String [] slova = radek.split("[ \t]+");
         String slovoPrikazu = slova[0];
         String []parametry = new String[slova.length-1];
         for(int i=0 ;i<parametry.length;i++){
@@ -78,8 +86,10 @@ public class Hra implements IHra {
             IPrikaz prikaz = platnePrikazy.vratPrikaz(slovoPrikazu);
             textKVypsani = prikaz.proved(parametry);
             if (herniPlan.getAktualniProstor() == herniPlan.getViteznyProstor() && neseVinoABabovku()) {
-                konecHry = true ;
+                konecHry = true;
                 textKVypsani = textKVypsani + "\n Hurá";
+                Statistiky.vypniMereni();
+                Statistiky.vratStatistiky();
             }
         }
         else {

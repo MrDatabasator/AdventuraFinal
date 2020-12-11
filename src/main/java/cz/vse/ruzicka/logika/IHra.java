@@ -7,20 +7,25 @@ package cz.vse.ruzicka.logika;
 
 
 /**
- *  Rozhraní které musí implementovat hra, je na ně navázáno uživatelské rozhraní
+ * Rozhraní které musí implementovat hra, je na ně navázáno uživatelské rozhraní
  *
- *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
- *@version    pro školní rok 2014/2015
+ * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
+ * @version pro školní rok 2014/2015
  */
-public interface IHra
-{
+public interface IHra {
     //== VEŘEJNÉ KONSTANTY =====================================================
     //== DEKLAROVANÉ METODY ====================================================
+
+    /**
+     * Vrátí seznam platných příkazů
+     */
+    public SeznamPrikazu vratPlatnePrikazy();
+
     /**
      *  Vrátí úvodní zprávu pro hráče.
      */
     public String vratUvitani();
-    
+
     /**
      *  Vrátí závěrečnou zprávu pro hráče.
      */
