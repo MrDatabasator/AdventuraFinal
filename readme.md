@@ -1,3 +1,3 @@
 ## readme
-Adventura Patrik Novák
+Adventura JailBreak 1.0 by Patrik Novák
 
