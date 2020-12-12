@@ -76,7 +76,7 @@
         </right>
         <left>
             <VBox spacing="30">
-                <!--Minimap-->
+                <!--Minimapa-->
                 <Label>
                     <text>
                         Minimapa

@@ -26,7 +26,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class MainController {
@@ -53,23 +55,14 @@ public class MainController {
     public ImageView imgView;
     public ComboBox comboBox;
 
+    private Collection<String> listPrikazu = new ArrayList<String>();
+
     private SeznamPrikazu seznamPrikazu;
 
     public void init(IHra hra) {
         this.hra = hra;
 
-        this.comboBox.setItems(FXCollections.observableArrayList(hra.vratPlatnePrikazy().vratPlatnePrikazy()));
 
-
-        /**
-         * NEED HELP
-         *
-         * ZADÁNÍ - Místo zadávání příkazu v textovém poli bude uživatel vybírat z rozbalovacího seznamu příkazů
-         *
-         * 1)JAK DOSTAT MAPU PRIKAZU DO COMBOBOXU
-         *
-         * 2)POTOM KDYZ KLIKNU NA ITEM V COMBOBOXU AT SE PREDVYPLNI DOLE
-         */
 
         /*hra.vratPlatnePrikazy().vratPlatnePrikazy().entrySet().stream().forEach(e -> {
            // Label comboItem = new Label(e.getKey());
@@ -168,9 +161,56 @@ public class MainController {
         updateBackpack();
         updatePozadi();
         updateMinimap();
+        updateCombobox();
+    }
+
+
+    private void updateCombobox() {
+
+        /**
+         * ke každému příkazu kde je to možné přidá attribut se kterým lze příkaz použít, pak ho uloží do listPrikazu a ten vypíše v comboboxu
+         */
+
+        this.comboBox.getItems().clear();
+        this.listPrikazu.clear();
+
+        //this.comboBox.setItems(FXCollections.observableArrayList(hra.vratPlatnePrikazy().vratPlatnePrikazy().keySet()));
+
+        for (String veci : getAktualniProstor().getSeznamVeci().keySet()
+        ) {
+            listPrikazu.add("seber " + veci);
+        }
+        for (String veci : hra.getBatoh().getSeznamVeci().keySet()
+        ) {
+            listPrikazu.add("poloz " + veci);
+        }
+        for (Prostor vychod : getAktualniProstor().getVychody()
+        ) {
+            listPrikazu.add("jdi " + vychod.getNazev());
+        }
+        listPrikazu.add("napoveda");
+        listPrikazu.add("obsahBatohu");
+        listPrikazu.add("konec");
+
+
+        this.comboBox.setItems(FXCollections.observableArrayList(listPrikazu));
+
+        comboBox.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                executeCommand(comboBox.getValue().toString());
+            }
+        });
+
+
     }
 
     private void updateMinimap() {
+
+        /**
+         * Minimapa se zobrazuje dle aktuálního prostoru
+         */
+
         String currentProstor = getAktualniProstor().getNazev();
 
         Image image = new Image(getClass().getClassLoader().getResourceAsStream(currentProstor + "Map.jpeg"));
@@ -212,6 +252,10 @@ public class MainController {
     }
 
     private void updatePozadi() {
+
+        /**
+         * Získává z aktuálního prostoru název a podle něj dává na pozadí obrázek z resourců
+         */
 
         String currentProstor = getAktualniProstor().getNazev();
 

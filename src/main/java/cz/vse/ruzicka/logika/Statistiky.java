@@ -20,11 +20,29 @@ public class Statistiky {
         endTime = new Date().getTime();
     }
 
-    public static void vratStatistiky() {
+    /*public static void vratStatistiky() {
         timeElapsed = endTime - startTime;
         System.out.println("Za tuhle hru jsi navštívil " + pocetNavstivenychMistnosti + " místností.");
         System.out.println("Zadal jsi přesně " + pocetZadanychPrikazu + " příkazů.");
         System.out.println("Odehrál jsi celých " + TimeUnit.MILLISECONDS.toSeconds(timeElapsed) + " sekund.");
+    }*/
+
+    public static int vratPocetNavstivenychMistnosti() {
+        return pocetNavstivenychMistnosti;
+    }
+
+    public static int vratPocetZadanychPrikazu() {
+        return pocetZadanychPrikazu;
+    }
+
+    public static long vratCasHrani() {
+        timeElapsed = endTime - startTime;
+        //long a = TimeUnit.MILLISECONDS.toSeconds(timeElapsed);
+        /**
+         * z nějakého důvodu nefunguje time unit proto pro převod času jsem použil jinou funkci
+         */
+        int seconds = (int) ((timeElapsed / 1000) % 60);
+        return seconds;
     }
 
     public static void pridejPrikaz() {

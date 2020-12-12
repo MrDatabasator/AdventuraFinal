@@ -40,6 +40,11 @@ public class Start extends Application
             IHra hra = new Hra();
             TextoveRozhrani ui = new TextoveRozhrani(hra);
             ui.hraj();
+            try {
+                Statistiky.zapniMereni();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             launch();
             try {

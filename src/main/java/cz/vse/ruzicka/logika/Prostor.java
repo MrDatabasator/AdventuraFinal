@@ -26,7 +26,7 @@ public class Prostor {
 
     private String nazev;
     private String popis;
-    private Set<Prostor> vychody;   // obsahuje sousední místnosti
+    public Set<Prostor> vychody;   // obsahuje sousední místnosti
     private Map<String, Vec> seznamVeci;   // seznam věcí v prostoru
 
     /**
@@ -203,7 +203,8 @@ public class Prostor {
     public Collection<Prostor> getVychody() {
         return Collections.unmodifiableCollection(vychody);
     }
- /**
+
+    /**
      * Vloží věc do prostoru
      *
      *@param  vec  instance věci, která se má vložit

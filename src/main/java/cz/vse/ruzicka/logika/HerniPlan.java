@@ -31,9 +31,9 @@ public class HerniPlan {
      */
     private void zalozProstoryHry() {
 
-        Prostor HlavniHala = new Prostor("HlavniHala", "Po vyhrané rvačce s agresivním vězněm jsi padl do bezvědomí, \n\nnevíš co se stalo dál ale jak se pomalu probouzíš začneš rozeznávat nemocniční prostředí, rychle vstaneš ze svého lůžka jestli se ti to nezdá a otevřeš dvěře hlavní haly.\n\n Nyní už víš že jsi určitě v nemocnici, všude kolem tebe prochází spousta doktorů a pacientů. Bylo tedy to co se ti stalo jen sen nebo skutečnost? \n\nGratuluju!! Dohrál jsi mojí hru :)");
-        Prostor Vezen = new Prostor("Vezen", "Přišel jsi k vězni a ten se na tebe agresivně vrhl. Není času na zbyt, pokud nemáš nic na sebeobranu zde tvá cesta končí.", HlavniHala, "Baseballka");
-        Prostor Kuchyne = new Prostor("Kuchyne", "Vešel jsi do kuchyně, když v tom se na tebe otočila partička bachařů, kteří tam popíjeli, jeden vytáhl zbraň a než by jsi cokoliv stačil, cítíš jak ti po hrudi stéká krev a padáš mrtvý k zemi. Zde tvá výprava končí.");
+        Prostor HlavniHala = new Prostor("HlavniHala", "Po vyhrané rvačce s agresivním vězněm jsi padl do bezvědomí, \nnevíš co se stalo dál ale jak se pomalu probouzíš začneš rozeznávat nemocniční prostředí, rychle vstaneš ze svého lůžka jestli se ti to nezdá a otevřeš dveře hlavní haly.\nNyní už víš že jsi určitě v nemocnici, všude kolem tebe prochází spousta doktorů a pacientů. Bylo tedy to co se ti stalo jen pouhým snem nebo skutečností?");
+        Prostor Vezen = new Prostor("Vezen", "Přišel jsi k vězni a ten se na tebe agresivně vrhl.", HlavniHala, "Baseballka");
+        Prostor Kuchyne = new Prostor("Kuchyne", "Vešel jsi do kuchyně, když v tom se na tebe otočila partička bachařů, kteří tam popíjeli, jeden vytáhl zbraň a než by jsi cokoliv stačil, cítíš jak ti po hrudi stéká krev a padáš mrtvý k zemi.");
         Prostor Jidelna = new Prostor("Jidelna", "Vešel jsi do jídelny, nevypadá to na normální vězeňskou jídelnu naopak spíš na bachařskou, jediné co vidíš na stole jsou lahve rumu když tu náhle uslyšíš z kuchyně šramot.");
         Prostor Satny = new Prostor("Satny", "Dostal jsi se do šatny, ve které jde cítit smrad potu avšak prního čeho si všimneš je děsivá silueta postavy člověka na konci chodby.");
         Prostor Osoba = new Prostor("Osoba", "Přišel si k osobě a ta tě okřikla, co tu chceš mladej, přines mi rum a pak si možná pokecáme.", Satny, "Rum");
@@ -71,7 +71,6 @@ public class HerniPlan {
 
         aktualniProstor = Cela;  // hra začíná v domečku
         viteznyProstor = HlavniHala;
-
 
         /*// vytvářejí se jednotlivé prostory
         Prostor domecek = new Prostor("domecek","domeček, ve kterém bydlí Karkulka");
@@ -127,5 +126,6 @@ public class HerniPlan {
     public Prostor getViteznyProstor() {
         return viteznyProstor;
     }
+
 
 }

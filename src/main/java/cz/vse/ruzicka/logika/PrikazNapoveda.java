@@ -34,11 +34,9 @@ class PrikazNapoveda implements IPrikaz {
      */
     @Override
     public String proved(String... parametry) {
-        return "Tvým úkolem je dovést Červenou Karkulku z domečku\n"
-        + "až k babičce, která bydlí v chaloupce za lesem.\n"
-        + "\n"
-        + "Můžeš zadat tyto příkazy:\n"
-        + platnePrikazy.vratNazvyPrikazu();
+        return "Vítejte ve hře JAILBREAK made by Patrik Novák.\nTvým úkolem je se za pomocí různých předmětů dostat pryč z vězení kde jsi se probudil.\n"
+                + "Můžeš zadat tyto příkazy:\n"
+                + platnePrikazy.vratNazvyPrikazu();
     }
     
      /**
