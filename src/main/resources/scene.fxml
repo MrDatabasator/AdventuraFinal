@@ -7,26 +7,36 @@
 <?import javafx.scene.web.WebView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<StackPane fx:id="stackPane" stylesheets="styles.css" xmlns="http://javafx.com/javafx/11.0.1"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.ruzicka.MainController" alignment="CENTER">
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="stackPane" stylesheets="styles.css"
+           xmlns="http://javafx.com/javafx/11.0.1" fx:controller="cz.vse.ruzicka.MainController" alignment="CENTER">
     <Label fx:id="background"></Label>
 
     <BorderPane fx:id="borderPane">
         <top>
-            <HBox alignment="TOP_CENTER">
-                <VBox spacing="10" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-                    <ToolBar>
-                        <Button fx:id="btnNovaHra">Nová hra</Button>
-                        <Button fx:id="btnNapoveda">Nápověda</Button>
-                        <Button fx:id="btnKonec">Konec</Button>
-                    </ToolBar>
+            <HBox alignment="CENTER">
+
+
+                <VBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
+
+                    <AnchorPane>
+                        <ToolBar AnchorPane.leftAnchor="350">
+                            <Button fx:id="btnNovaHra">Nová hra</Button>
+                            <Button fx:id="btnNapoveda">Nápověda</Button>
+                            <Button fx:id="btnKonec">Konec</Button>
+                        </ToolBar>
+                    </AnchorPane>
+
+
                     <Label fx:id="locationName">
                         <font>
                             <Font name="System Bold" size="20.0"/>
                         </font>
                     </Label>
+
                     <Label fx:id="locationDescription"/>
+
                 </VBox>
+
             </HBox>
         </top>
         <right>
@@ -75,8 +85,10 @@
             </VBox>
         </right>
         <left>
+
             <VBox spacing="30">
-                <!--Minimapa-->
+
+            <!--Minimapa-->
                 <Label>
                     <text>
                         Minimapa
@@ -93,7 +105,9 @@
         </left>
         <bottom>
             <VBox>
-                <ComboBox fx:id="comboBox"></ComboBox>
+                <AnchorPane>
+                    <ComboBox fx:id="comboBox" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50"></ComboBox>
+                </AnchorPane>
                 <TextArea fx:id="textOutput" editable="false"></TextArea>
                 <TextField fx:id="textInput" onKeyPressed="#onInputKeyPressed"></TextField>
             </VBox>

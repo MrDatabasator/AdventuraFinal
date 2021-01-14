@@ -52,24 +52,42 @@ public class HraTest {
      */
     @Test
     public void testPrubehHry() {
-        assertEquals("domecek", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi les");
+        assertEquals("Cela", hra1.getHerniPlan().getAktualniProstor().getNazev());
+        hra1.zpracujPrikaz("seber Pacidlo");
+        hra1.zpracujPrikaz("poloz Pacidlo");
+        hra1.zpracujPrikaz("jdi Chodba");
         assertEquals(false, hra1.konecHry());
-        assertEquals("les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi hluboky_les");
+        assertEquals("Chodba", hra1.getHerniPlan().getAktualniProstor().getNazev());
+        hra1.zpracujPrikaz("jdi VedlejsiCela");
         assertEquals(false, hra1.konecHry());
-        assertEquals("hluboky_les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-
-        // následuje ukázka testování věcí - zatím nejsou ani hlavičky metod
-        
-        //assertTrue(hra1.getHerniPlan().getAktualniProstor().obsahujeVec("kapradí"));
-        //hra1.zpracujPrikaz("seber kapradí");
-        //assertEquals(false, hra1.konecHry());    
-        //assertEquals("hluboký_les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        //assertFalse(hra1.getHerniPlan().getAktualniProstor().obsahujeVec("kapradí"));
-        //assertTrue(hra1.getHerniPlan().getBatoh().obsahujeVec("kapradí"));
-
-        // příkaz konec
+        assertEquals("VedlejsiCela", hra1.getHerniPlan().getAktualniProstor().getNazev());
+        hra1.zpracujPrikaz("seber Klic");
+        assertEquals("věci v batohu: Klic ", hra1.getBatoh().nazvyVeci());
+        hra1.zpracujPrikaz("jdi Chodba");
+        hra1.zpracujPrikaz("seber Retez");
+        assertEquals("věci v batohu: Retez Klic ", hra1.getBatoh().nazvyVeci());
+        hra1.zpracujPrikaz("poloz Klic");
+        hra1.zpracujPrikaz("jdi Rozcesti");
+        hra1.zpracujPrikaz("jdi PravaCesta");
+        hra1.zpracujPrikaz("jdi Jidelna");
+        hra1.zpracujPrikaz("seber Rum");
+        assertEquals("věci v batohu: Retez Rum ", hra1.getBatoh().nazvyVeci());
+        hra1.zpracujPrikaz("jdi PravaCesta");
+        hra1.zpracujPrikaz("jdi Rozcesti");
+        hra1.zpracujPrikaz("jdi LevaCesta");
+        hra1.zpracujPrikaz("jdi Sprchy");
+        hra1.zpracujPrikaz("seber Mydlo");
+        assertEquals("věci v batohu: Retez Rum Mydlo ", hra1.getBatoh().nazvyVeci());
+        hra1.zpracujPrikaz("jdi Osoba");
+        hra1.zpracujPrikaz("poloz Rum");
+        assertEquals("věci v batohu: Retez Mydlo ", hra1.getBatoh().nazvyVeci());
+        hra1.zpracujPrikaz("jdi Satny");
+        hra1.zpracujPrikaz("seber Baseballka");
+        assertEquals("věci v batohu: Retez Baseballka Mydlo ", hra1.getBatoh().nazvyVeci());
+        hra1.zpracujPrikaz("jdi Vezen");
+        hra1.zpracujPrikaz("poloz Baseballka");
+        hra1.zpracujPrikaz("jdi HlavniHala");
+        assertEquals(hra1.getHerniPlan().getViteznyProstor(), hra1.getHerniPlan().getAktualniProstor());
         hra1.zpracujPrikaz("konec");
         assertEquals(true, hra1.konecHry());
     }

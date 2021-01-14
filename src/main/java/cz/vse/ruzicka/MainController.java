@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -112,12 +113,48 @@ public class MainController {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                File napoveda = new File("napoveda.HTML");
+                /**
+                 * Při kliknutí na nápovědu se otevře nové okno s nápovědou, první koncept otevíral nápovědu z HTML souboru a otevřel jí v defaultním prohlížeči
+                 */
+                /*File napoveda = new File("napoveda.HTML");
                 Desktop desktop = Desktop.getDesktop();
                 try {
                     desktop.open(napoveda);
                     executeCommand("napoveda");
                 } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+                /**
+                 * Při kliknutí na nápovědu se otevře nové okno s nápovědou, nyní se otevírá v novém okně
+                 */
+
+                try {
+                    Label vNovemOkne = new Label("Vítejte ve hře JAILBREAK made by Patrik Novák...\n" +
+                            "\n" +
+                            "\n" +
+                            "Tvým úkolem je se za pomocí různých předmětů dostat pryč z vězení kde jsi se probudil....\n" +
+                            "\n" +
+                            "Můžeš zadávat tyto příkazy:\n" +
+                            "napoveda/obsahBatohu/poloz/jdi/seber/konec ");
+
+                    StackPane secondaryLayout = new StackPane();
+                    secondaryLayout.getChildren().add(vNovemOkne);
+
+                    Scene secondScene = new Scene(secondaryLayout, 500, 200);
+
+                    // New window (Stage)
+                    Stage newWindow = new Stage();
+                    newWindow.setTitle("Nápověda");
+                    newWindow.setScene(secondScene);
+
+                    Stage stage = (Stage) btnNovaHra.getScene().getWindow();
+
+                    // Set position of second window, related to primary window.
+                    newWindow.setX(stage.getX() + 200);
+                    newWindow.setY(stage.getY() + 100);
+
+                    newWindow.show();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 //hra.zpracujPrikaz("napoveda");
@@ -137,6 +174,7 @@ public class MainController {
 
         update();
     }
+
 
     private void update() {
        /* StackPane stackPane = new StackPane();
